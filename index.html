@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CleanInbox - 找回邮箱的平静</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    .gradient-bg {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    .btn-connect {
+      transition: all 0.2s ease;
+    }
+    .btn-connect:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 40px rgba(102, 126, 234, 0.4);
+    }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+  <!-- Navigation -->
+  <nav class="bg-white shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center gap-2">
+          <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+          </svg>
+          <span class="text-xl font-bold text-gray-900">CleanInbox</span>
+        </div>
+        <div id="authSection">
+          <button id="loginBtn" class="text-gray-600 hover:text-gray-900 font-medium">登录</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="gradient-bg text-white py-20 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 class="text-4xl sm:text-5xl font-bold mb-6">
+        找回邮箱的平静
+      </h1>
+      <p class="text-xl text-indigo-100 mb-8 max-w-2xl mx-auto">
+        一键扫描，一键清理，还你一个干净的邮箱
+      </p>
+
+      <div id="heroContent">
+        <button id="connectBtn" class="btn-connect bg-white text-indigo-600 px-8 py-4 rounded-xl text-lg font-semibold shadow-lg">
+          连接我的 Gmail
+        </button>
+        <div class="mt-6 flex flex-col sm:flex-row gap-4 justify-center text-sm text-indigo-100">
+          <div class="flex items-center gap-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            只读取，不删除任何邮件
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            使用 Google 官方登录
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            2 分钟完成清理
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="py-16 px-4 bg-white">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-12 text-gray-900">它是如何工作的</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">1. 连接</h3>
+          <p class="text-gray-600">使用 Google 账号安全连接</p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">2. 扫描</h3>
+          <p class="text-gray-600">自动识别所有订阅邮件</p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">3. 清理</h3>
+          <p class="text-gray-600">批量取消不需要的订阅</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-16 px-4 bg-gray-50">
+    <div class="max-w-2xl mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-12 text-gray-900">常见问题</h2>
+
+      <div class="space-y-4">
+        <details class="bg-white rounded-lg shadow-sm">
+          <summary class="px-6 py-4 cursor-pointer font-medium">会删除我的邮件吗？</summary>
+          <div class="px-6 pb-4 text-gray-600">
+            不会。我们只取消订阅，不会删除任何邮件。已收到的邮件会保留在你的邮箱中。
+          </div>
+        </details>
+
+        <details class="bg-white rounded-lg shadow-sm">
+          <summary class="px-6 py-4 cursor-pointer font-medium">安全吗？</summary>
+          <div class="px-6 pb-4 text-gray-600">
+            使用 Google 官方登录 (OAuth 2.0)，我们只读取发件人信息和退订链接。你的密码不会被记录。
+          </div>
+        </details>
+
+        <details class="bg-white rounded-lg shadow-sm">
+          <summary class="px-6 py-4 cursor-pointer font-medium">取消后可以重新订阅吗？</summary>
+          <div class="px-6 pb-4 text-gray-600">
+            当然可以。随时可以重新订阅任何服务，就像你第一次订阅时一样。
+          </div>
+        </details>
+
+        <details class="bg-white rounded-lg shadow-sm">
+          <summary class="px-6 py-4 cursor-pointer font-medium">扫描需要多久？</summary>
+          <div class="px-6 pb-4 text-gray-600">
+            通常 10-30 秒，取决于你的邮件数量。我们会显示实时进度。
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-8 px-4 bg-gray-900 text-gray-400 text-center">
+    <p>&copy; 2026 CleanInbox. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // 检查是否已连接
+    async function checkAuth() {
+      try {
+        const res = await fetch('/api/user');
+        if (res.ok) {
+          const data = await res.json();
+          document.getElementById('heroContent').innerHTML = `
+            <div class="bg-white/20 backdrop-blur rounded-xl p-6 max-w-md mx-auto">
+              <p class="mb-4">欢迎回来，${data.email}</p>
+              <button onclick="startScan()" class="bg-white text-indigo-600 px-6 py-3 rounded-lg font-semibold">
+                开始扫描
+              </button>
+            </div>
+          `;
+          document.getElementById('loginBtn').textContent = data.email;
+        }
+      } catch (e) {
+        // 未登录
+      }
+    }
+
+    // 连接 Gmail
+    document.getElementById('connectBtn')?.addEventListener('click', async () => {
+      try {
+        const res = await fetch('/auth/url');
+        const data = await res.json();
+        window.location.href = data.url;
+      } catch (error) {
+        alert('无法连接，请稍后重试');
+      }
+    });
+
+    // 开始扫描
+    function startScan() {
+      window.location.href = '/scan.html';
+    }
+
+    // 检查连接状态
+    checkAuth();
+  </script>
+</body>
+</html>
