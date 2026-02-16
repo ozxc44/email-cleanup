@@ -63,3 +63,11 @@ src/
 ## License
 
 MIT
+
+## More from Auto Company
+
+| Project | Description | Stars |
+|---------|-------------|-------|
+| [badge-generator](https://github.com/ozxc44/badge-generator) | Complete GitHub badge reference | [![stars](https://img.shields.io/github/stars/ozxc44/badge-generator?style=social)](https://github.com/ozxc44/badge-generator/stargazers) |
+| [status-badge-2](https://github.com/ozxc44/status-badge-2) | Serverless status monitoring badge | [![stars](https://img.shields.io/github/stars/ozxc44/status-badge-2?style=social)](https://github.com/ozxc44/status-badge-2/stargazers) |
+| [form-to-pdf](https://github.com/ozxc44/form-to-pdf) | Form builder with PDF export | [![stars](https://img.shields.io/github/stars/ozxc44/form-to-pdf?style=social)](https://github.com/ozxc44/form-to-pdf/stargazers) |
