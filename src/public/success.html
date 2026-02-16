@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>清理完成 - CleanInbox</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes bounce-in {
+      0% { transform: scale(0.8); opacity: 0; }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .bounce-in { animation: bounce-in 0.5s ease-out; }
+    @keyframes confetti {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(720deg); }
+    }
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      top: -10px;
+      animation: confetti 3s ease-out forwards;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+  <!-- Confetti Container -->
+  <div id="confettiContainer" class="fixed inset-0 pointer-events-none overflow-hidden"></div>
+
+  <!-- Main Content -->
+  <div class="max-w-lg mx-auto px-4 py-16 text-center">
+    <!-- Success Icon -->
+    <div class="bounce-in mb-8">
+      <div class="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto">
+        <svg class="w-12 h-12 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Title -->
+    <h1 class="text-3xl font-bold text-gray-900 mb-2 bounce-in" style="animation-delay: 0.1s">
+      太棒了！
+    </h1>
+    <p class="text-xl text-gray-600 mb-8 bounce-in" style="animation-delay: 0.2s">
+      你的邮箱更安静了
+    </p>
+
+    <!-- Results Card -->
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-8 bounce-in" style="animation-delay: 0.3s">
+      <div class="text-5xl font-bold text-indigo-600 mb-2" id="successCount">0</div>
+      <p class="text-gray-600 mb-6">成功取消订阅</p>
+
+      <!-- Before/After -->
+      <div class="flex items-center justify-center gap-4 bg-gray-50 rounded-xl p-4 mb-6">
+        <div class="text-center">
+          <div class="text-2xl font-bold text-gray-400" id="beforeCount">0</div>
+          <div class="text-sm text-gray-500">清理前</div>
+        </div>
+        <svg class="w-8 h-8 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+        </svg>
+        <div class="text-center">
+          <div class="text-2xl font-bold text-indigo-600" id="afterCount">0</div>
+          <div class="text-sm text-gray-500">清理后</div>
+        </div>
+      </div>
+
+      <!-- Manual handling notice -->
+      <div id="manualNotice" class="hidden bg-amber-50 rounded-xl p-4 text-left">
+        <div class="flex items-start gap-3">
+          <svg class="w-6 h-6 text-amber-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+          </svg>
+          <div>
+            <p class="font-medium text-amber-800">需要手动处理</p>
+            <p class="text-sm text-amber-700" id="manualText">部分订阅需要你在邮件中点击退订链接</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pricing CTA -->
+    <div class="bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl p-6 text-white text-left mb-8 bounce-in" style="animation-delay: 0.4s">
+      <h3 class="font-bold text-lg mb-2">保持邮箱干净</h3>
+      <p class="text-indigo-100 mb-4">每周自动扫描，一键清理新出现的垃圾订阅</p>
+
+      <div class="grid grid-cols-2 gap-3 mb-4">
+        <div class="bg-white/20 rounded-xl p-3">
+          <p class="font-medium">免费试用</p>
+          <p class="text-sm text-indigo-100">每周手动扫描</p>
+        </div>
+        <div class="bg-white rounded-xl p-3 text-gray-900">
+          <p class="font-medium">$9/月</p>
+          <p class="text-sm text-gray-600">自动清理</p>
+        </div>
+      </div>
+
+      <button class="w-full bg-white text-indigo-600 py-3 rounded-xl font-semibold hover:bg-indigo-50 transition-colors">
+        开始免费试用
+      </button>
+    </div>
+
+    <!-- Back Button -->
+    <a href="/" class="inline-block text-gray-600 hover:text-gray-900 font-medium bounce-in" style="animation-delay: 0.5s">
+      返回首页
+    </a>
+  </div>
+
+  <script>
+    // 创建五彩纸屑
+    function createConfetti() {
+      const colors = ['#667eea', '#764ba2', '#f093fb', '#4facfe', '#43e97b'];
+      const container = document.getElementById('confettiContainer');
+
+      for (let i = 0; i < 50; i++) {
+        setTimeout(() => {
+          const confetti = document.createElement('div');
+          confetti.className = 'confetti';
+          confetti.style.left = Math.random() * 100 + 'vw';
+          confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+          confetti.style.animationDelay = Math.random() * 0.5 + 's';
+          confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+          container.appendChild(confetti);
+          setTimeout(() => confetti.remove(), 3000);
+        }, i * 30);
+      }
+    }
+
+    // 显示结果
+    function showResults() {
+      const results = JSON.parse(sessionStorage.getItem('unsubscribeResults') || '[]');
+
+      if (!results.length) {
+        // 没有结果，可能是直接访问
+        window.location.href = '/';
+        return;
+      }
+
+      const successCount = results.filter(r => r.status === 'success').length;
+      const manualCount = results.filter(r => r.status === 'manual').length;
+      const totalCount = results.length;
+
+      // 获取原始订阅数量
+      const allSubscriptions = JSON.parse(sessionStorage.getItem('subscriptions') || '[]');
+
+      document.getElementById('successCount').textContent = successCount;
+      document.getElementById('beforeCount').textContent = allSubscriptions.length;
+      document.getElementById('afterCount').textContent = allSubscriptions.length - successCount;
+
+      if (manualCount > 0) {
+        document.getElementById('manualNotice').classList.remove('hidden');
+        document.getElementById('manualText').textContent =
+          `${manualCount} 个订阅需要你在邮件中点击退订链接`;
+      }
+
+      createConfetti();
+    }
+
+    showResults();
+  </script>
+</body>
+</html>
